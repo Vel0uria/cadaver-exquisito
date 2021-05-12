@@ -36,24 +36,25 @@ function setup() {
     abismo,
   ];
 
-  for (let i = 0; i < 7; i++) {
+  for (let i = 0; i < images.length + 1; i++) {
     y = y + rectHeight;
-    rectangles.push(new Rectangles(y));
+    rectangles.push(new Rectangle(y));
   }
   imageMode(CENTER);
   //  blendMode(DARKEST);
+  // images.forEach(element => console.log(element));
+  // images.map(pic => {
+  //   console.log(pic);
+  // });
 }
 
 function draw() {
   background(230, 190, 250);
 
   for (let i = 0; i < rectangles.length; i++) {
-    //   rectangles[i].shuffle(images);
+    set.add(images[i]);
+
+    rectangles[i].display();
     rectangles[i].move();
-    //  rectangles[i].display();
   }
-
-  //console.log(rectangles[0].shuffle(images));
 }
-
-function shuffle() {}
