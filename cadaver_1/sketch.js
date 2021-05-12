@@ -2,7 +2,13 @@ const rectHeight = 247;
 const rectWidth = 140;
 let images = [];
 const rectangles = [];
-let set = new Set();
+let set;
+let colorR = 0.0;
+let colorG = 0.0;
+let colorB = 0.0;
+let r = 150;
+let g = 150;
+let b = 150;
 
 function preload() {
   exquisito = loadImage("assets/exquisito.jpg");
@@ -21,7 +27,7 @@ function setup() {
   createCanvas(1920, 1080);
 
   y = height;
-  dx = random(100, 200);
+  dx = random(200, 500);
   dy = random(150, 300);
   images = [
     exquisito,
@@ -35,26 +41,30 @@ function setup() {
     peru,
     abismo,
   ];
-
-  for (let i = 0; i < images.length + 1; i++) {
+  set = new Set(images);
+  for (let i = 0; i < images.length; i++) {
     y = y + rectHeight;
     rectangles.push(new Rectangle(y));
   }
   imageMode(CENTER);
-  //  blendMode(DARKEST);
-  // images.forEach(element => console.log(element));
-  // images.map(pic => {
-  //   console.log(pic);
-  // });
+  blendMode(DIFFERENCE);
+  //
 }
 
 function draw() {
-  background(230, 190, 250);
+  background(r, g, b);
 
+  // if (r < 50) {
+  //   blendMode(LIGHTEST);
+  // } else {
+  //   blendMode(BURN);
+  // }
+  colorR = colorR + 0.001;
+  colorG = colorG + 0.002;
+  colorB = colorB + 0.003;
   for (let i = 0; i < rectangles.length; i++) {
-    set.add(images[i]);
-
-    rectangles[i].display();
+    rectangles[i].display(images[i]);
     rectangles[i].move();
+    rectangles[i].changeColor();
   }
 }

@@ -5,26 +5,35 @@ class Rectangle {
     this.rectWidth = rectWidth;
     this.rectHeight = rectHeight;
     this.ySpeed = 4;
-    //   this.set = new Set(images);
   }
 
-  // shuffle(pics) {
-  //   this.set.add(random(pics));
-  // }
+  display(pic) {
+    // tint(g, r, b);
+    //  blendMode(DIFFERENCE);
 
-  display() {
-    for (let pic of set) {
-      // console.log(pic);
-      image(pic, width / 2, this.y, this.rectWidth, this.rectHeight);
+    image(
+      pic,
+      width / 2,
+      this.y,
+      this.rectWidth,
+      this.rectHeight,
+      50,
+      90,
+      dx,
+      150
+    );
+  }
+
+  move() {
+    this.y -= this.ySpeed;
+    if (this.y < -1000) {
+      this.y = height;
     }
   }
-  move() {
-    // if (this.y < -140) {
-    //   this.y = height + rectHeight * 2;
-    // }
-    // if (rectangles[rectangles.length - 1] < -140) {
-    //   this.y = height + rectHeight * 2;
-    // }
-    this.y -= this.ySpeed;
+
+  changeColor() {
+    r = map(this.y, height - this.rectHeight, -1000, noise(colorR) * 255, 255);
+    g = map(this.y, height - this.rectHeight, -1000, noise(colorG) * 255, 255);
+    b = map(this.y, height - this.rectHeight, -1000, noise(colorB) * 255, 255);
   }
 }
