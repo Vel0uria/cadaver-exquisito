@@ -10,9 +10,9 @@ let set;
 let colorR = 0.0;
 let colorG = 0.0;
 let colorB = 0.0;
-let r = 50;
-let g = 50;
-let b = 50;
+let r = 70;
+let g = 70;
+let b = 70;
 let tristeza;
 function preload() {
   exquisito = loadImage("assets/exquisito.jpg");
@@ -39,12 +39,12 @@ function preload() {
 }
 
 function setup() {
-  createCanvas(1920, 1080);
+  createCanvas(820, 1080);
 
   y = height;
-  xPos = width / 4;
-  xPos1 = 960;
-  xPos2 = 1420;
+  xPos = width - rectWidth;
+  xPos1 = rectWidth * 3;
+  xPos2 = rectWidth;
   dx = 390;
   dy = random(150, 300);
   images = [exquisito, pollo, palabras, otras, vacuna, una, modo];
@@ -65,29 +65,58 @@ function setup() {
     y = y + rectHeight;
 
     rectangles.push(new Rectangle(xPos, y));
-    rectangles_1.push(new Rectangle(xPos1, y));
-    rectangles_2.push(new Rectangle(xPos2, y));
+    rectangles_1.push(new Rectangle(xPos1, y + 480));
+    rectangles_2.push(new Rectangle(xPos2, y + 960));
   }
   imageMode(CENTER);
+  blendMode(DIFFERENCE);
 }
 
 function draw() {
   background(r, g, b);
 
   for (let i = 0; i < rectangles.length; i++) {
-    rectangles[i].display(images[i]);
+    rectangles[i].fractalize(
+      images[i],
+      xPos,
+      rectangles[i].y + 75,
+      rectWidth,
+      rectHeight
+    );
+    // rectangles[i].display(images[i]);
     rectangles[i].move();
     rectangles[i].changeColor();
-    rectangles[i].randomMode();
+    // rectangles[i].randomMode();
   }
   for (let i = 0; i < rectangles_1.length; i++) {
-    rectangles_1[i].display(images_1[i]);
+    //rectangles_1[i].display(images_1[i]);
+
+    rectangles_1[i].fractalize(
+      images_1[i],
+      xPos1,
+      rectangles_1[i].y + 75,
+      rectWidth,
+      rectHeight
+    );
+    //  if (rectangles[rectangles.length - 1].y < height || rectangles[0].y < -1) {
     rectangles_1[i].move();
-    // rectangles_1[i].changeColor();
+    //}
   }
   for (let i = 0; i < rectangles_2.length; i++) {
-    rectangles_2[i].display(images_2[i]);
+    // rectangles_2[i].display(images_2[i]);
+
+    rectangles_2[i].fractalize(
+      images_2[i],
+      xPos2,
+      rectangles_2[i].y + 75,
+      rectWidth,
+      rectHeight
+    );
+    // if (
+    //   rectangles_1[rectangles_1.length - 1].y < height ||
+    //   rectangles_1[0].y < -1
+    // ) {
     rectangles_2[i].move();
-    // rectangles_2[i].changeColor();
+    // }
   }
 }
