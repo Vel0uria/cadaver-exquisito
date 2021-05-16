@@ -1,12 +1,12 @@
-const rectHeight = 247;
-const rectWidth = 140;
+const rectHeight = 154.28;
+const rectWidth = 94;
 let images = [];
 let images_1 = [];
 let images_2 = [];
 const rectangles = [];
 const rectangles_1 = [];
 const rectangles_2 = [];
-let set;
+const rectangles_3 = [];
 let colorR = 0.0;
 let colorG = 0.0;
 let colorB = 0.0;
@@ -39,17 +39,39 @@ function preload() {
 }
 
 function setup() {
-  createCanvas(820, 1080);
+  createCanvas(720, 1080, WEBGL);
 
-  y = height;
-  xPos = width - rectWidth;
-  xPos1 = rectWidth * 3;
-  xPos2 = rectWidth;
+  y = -694;
+
+  xPos = rectWidth * 2.83;
+  xPos1 = xPos - rectWidth * 1.98;
+  xPos2 = xPos1 - rectWidth * 1.98;
+  xPos3 = xPos2 - rectWidth * 1.98;
   dx = 390;
   dy = random(150, 300);
-  images = [exquisito, pollo, palabras, otras, vacuna, una, modo];
+  images = [
+    exquisito,
+    pollo,
+    palabras,
+    otras,
+    vacuna,
+    una,
+    modo,
+    gratis,
+    tristeza,
+  ];
 
-  images_1 = [gratis, peru, abismo, tristeza, aware, app, descargar];
+  images_1 = [
+    gratis,
+    peru,
+    abismo,
+    tristeza,
+    aware,
+    app,
+    descargar,
+    codigo,
+    gratis,
+  ];
 
   images_2 = [
     codigo,
@@ -59,64 +81,71 @@ function setup() {
     checklist,
     complete,
     programas,
+    tristeza,
+    codigo,
   ];
 
   for (let i = 0; i < images.length; i++) {
     y = y + rectHeight;
 
     rectangles.push(new Rectangle(xPos, y));
-    rectangles_1.push(new Rectangle(xPos1, y + 480));
-    rectangles_2.push(new Rectangle(xPos2, y + 960));
+    rectangles_1.push(new Rectangle(xPos1, y - rectHeight));
+    rectangles_2.push(new Rectangle(xPos2, y - rectHeight));
+    rectangles_3.push(new Rectangle(xPos3, y - rectHeight));
   }
   imageMode(CENTER);
-  blendMode(DIFFERENCE);
+  rectMode(CENTER);
 }
 
 function draw() {
   background(r, g, b);
-
+  //console.log(xPos, y);
   for (let i = 0; i < rectangles.length; i++) {
     rectangles[i].fractalize(
       images[i],
       xPos,
-      rectangles[i].y + 75,
+      rectangles[i].y,
       rectWidth,
       rectHeight
     );
+
     // rectangles[i].display(images[i]);
-    rectangles[i].move();
-    rectangles[i].changeColor();
-    // rectangles[i].randomMode();
+    // rectangles[i].move();
+    // rectangles[i].changeColor();
   }
   for (let i = 0; i < rectangles_1.length; i++) {
-    //rectangles_1[i].display(images_1[i]);
+    // rectangles_1[i].display(images_1[i]);
 
     rectangles_1[i].fractalize(
       images_1[i],
       xPos1,
-      rectangles_1[i].y + 75,
+      rectangles_1[i].y,
       rectWidth,
       rectHeight
     );
-    //  if (rectangles[rectangles.length - 1].y < height || rectangles[0].y < -1) {
-    rectangles_1[i].move();
-    //}
+
+    // rectangles_1[i].move();
   }
   for (let i = 0; i < rectangles_2.length; i++) {
     // rectangles_2[i].display(images_2[i]);
-
     rectangles_2[i].fractalize(
       images_2[i],
       xPos2,
-      rectangles_2[i].y + 75,
+      rectangles_2[i].y,
       rectWidth,
       rectHeight
     );
-    // if (
-    //   rectangles_1[rectangles_1.length - 1].y < height ||
-    //   rectangles_1[0].y < -1
-    // ) {
-    rectangles_2[i].move();
-    // }
+    //  rectangles_2[i].move();
+  }
+  for (let i = 0; i < rectangles_3.length; i++) {
+    // rectangles_2[i].display(images_2[i]);
+    rectangles_3[i].fractalize(
+      images[i],
+      xPos3,
+      rectangles_3[i].y,
+      rectWidth,
+      rectHeight
+    );
+    //  rectangles_2[i].move();
   }
 }

@@ -59,15 +59,18 @@ class Rectangle {
   fractalize(pic, x, y, sX, sY) {
     let n = 0.5;
 
-    image(pic, x, y, sX, sY);
+    // image(pic, x, y, sX, sY);
+    noFill();
+    rect(x, y, sX, sY);
     // 50,
     // 90,
     // dx,
     // 150
 
     if (sX > 5) {
-      this.fractalize(pic, x - sX * n, y + sY * n, sX * n, sY * n);
       this.fractalize(pic, x + sX * n, y - sY * n, sX * n, sY * n);
+
+      this.fractalize(pic, x - sX * n, y + sY * n, sX * n, sY * n);
     }
   }
 }
