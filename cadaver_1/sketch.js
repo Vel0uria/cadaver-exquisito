@@ -1,5 +1,5 @@
-const rectHeight = 154.28;
-const rectWidth = 94;
+const rectHeight = 213;
+const rectWidth = 130;
 let images = [];
 let images_1 = [];
 let images_2 = [];
@@ -55,14 +55,14 @@ function preload() {
 }
 
 function setup() {
-  createCanvas(720, 1080, WEBGL);
+  createCanvas(1080, 1920);
 
-  y = -694;
+  y = 0;
 
-  xPos = rectWidth * 2.83;
-  xPos1 = xPos - rectWidth * 1.98;
-  xPos2 = xPos1 - rectWidth * 1.98;
-  xPos3 = xPos2 - rectWidth * 1.98;
+  xPos = rectWidth;
+  xPos1 = xPos + rectWidth * 1.98;
+  xPos2 = xPos1 + rectWidth * 1.98;
+  xPos3 = xPos2 + rectWidth * 1.98;
   dx = 390;
   dy = random(150, 300);
   images = [exquisito, pollo, palabras, otras, vacuna, una, modo, gratis, peru];
@@ -77,6 +77,24 @@ function setup() {
     empresas,
     internet,
     desventajas,
+    checklist,
+    complete,
+    programas,
+    mejores,
+    imagenes,
+    personalidad,
+    cerebral,
+    clinic,
+    specialized,
+    trabajo,
+    ambas,
+    probabilidad,
+    conceptos,
+    fertirriego,
+    transferencia,
+    calor,
+    icono,
+    iglesia,
   ];
 
   images_2 = [
@@ -110,15 +128,14 @@ function setup() {
     rectangles_3.push(new Rectangle(xPos3, y - rectHeight));
   }
   imageMode(CENTER);
-  rectMode(CENTER);
 }
 
 function draw() {
-  background(r, g, b);
+  background(r, g, b, 50);
 
   for (let i = 0; i < rectangles.length; i++) {
     rectangles[i].fractalize(
-      images,
+      // images,
       xPos,
       rectangles[i].y,
       rectWidth,
@@ -130,7 +147,7 @@ function draw() {
   }
   for (let i = 0; i < rectangles_1.length; i++) {
     rectangles_1[i].fractalize(
-      images_1,
+      //  images_1,
       xPos1,
       rectangles_1[i].y,
       rectWidth,
@@ -139,18 +156,18 @@ function draw() {
   }
   for (let i = 0; i < rectangles_2.length; i++) {
     rectangles_2[i].fractalize(
-      images_2,
+      //  images_2,
       xPos2,
       rectangles_2[i].y,
       rectWidth,
       rectHeight
     );
-    //  rectangles_2[i].changeColor();
+    rectangles_2[i].changeColor();
     //  rectangles_2[i].move();
   }
   for (let i = 0; i < rectangles_3.length; i++) {
     rectangles_3[i].fractalize(
-      images_3,
+      //  images_3,
       xPos3,
       rectangles_3[i].y,
       rectWidth,

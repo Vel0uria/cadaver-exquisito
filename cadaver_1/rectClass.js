@@ -41,26 +41,27 @@ class Rectangle {
     b = map(this.y, height - rectHeight, -690, noise(colorB) * 255, 255);
   }
 
-  fractalize(array, x, y, sX, sY) {
+  fractalize(x, y, sX, sY) {
     let n = 0.5;
     let pos = map(sX, 5, 94, sY, 4, 154);
     let pic = map(
       pos,
       4,
       46,
-      noise(this.pic1) * array.length,
-      random(array.length)
+      noise(this.pic1) * images_1.length - 1,
+      images_1.length - 1
     );
-    if (pic < array.length) {
-      this.pic1 += 0.0009;
+    if (pic < images_1.length) {
+      this.pic1 = this.pic1 + 0.0001;
     }
 
-    image(array[Math.floor(pic)], x, y, sX, sY);
+    image(images_1[Math.floor(pic)], x, y, sX, sY);
+    //image(images_1[0], x, y, sX, sY);
 
     if (sX > 5) {
-      this.fractalize(array, x + sX * n, y - sY * n, sX * n, sY * n);
+      this.fractalize(x + sX * n, y - sY * n, sX * n, sY * n);
 
-      this.fractalize(array, x - sX * n, y + sY * n, sX * n, sY * n);
+      this.fractalize(x - sX * n, y + sY * n, sX * n, sY * n);
     }
   }
 }
