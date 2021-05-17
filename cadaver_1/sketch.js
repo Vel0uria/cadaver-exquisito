@@ -3,6 +3,7 @@ const rectWidth = 94;
 let images = [];
 let images_1 = [];
 let images_2 = [];
+let images_3 = [];
 const rectangles = [];
 const rectangles_1 = [];
 const rectangles_2 = [];
@@ -13,7 +14,7 @@ let colorB = 0.0;
 let r = 70;
 let g = 70;
 let b = 70;
-let tristeza;
+
 function preload() {
   exquisito = loadImage("assets/exquisito.jpg");
   pollo = loadImage("assets/pollo.jpg");
@@ -36,6 +37,21 @@ function preload() {
   checklist = loadImage("assets/checklist.jpg");
   complete = loadImage("assets/complete.jpg");
   programas = loadImage("assets/programas.png");
+  mejores = loadImage("assets/mejores.jpg");
+  imagenes = loadImage("assets/imagenes.jpg");
+  personalidad = loadImage("assets/personalidad.jpg");
+  cerebral = loadImage("assets/cerebral.jpeg");
+  clinic = loadImage("assets/clinic.jpg");
+  specialized = loadImage("assets/specialized.jpeg");
+  trabajo = loadImage("assets/trabajo.jpg");
+  ambas = loadImage("assets/ambas.png");
+  probabilidad = loadImage("assets/probabilidad.jpg");
+  conceptos = loadImage("assets/conceptos.png");
+  fertirriego = loadImage("assets/fertirriego.jpg");
+  transferencia = loadImage("assets/transferencia.png");
+  calor = loadImage("assets/calor.jpg");
+  icono = loadImage("assets/icono.png");
+  iglesia = loadImage("assets/iglesia.jpg");
 }
 
 function setup() {
@@ -49,42 +65,42 @@ function setup() {
   xPos3 = xPos2 - rectWidth * 1.98;
   dx = 390;
   dy = random(150, 300);
-  images = [
-    exquisito,
-    pollo,
-    palabras,
-    otras,
-    vacuna,
-    una,
-    modo,
-    gratis,
-    tristeza,
-  ];
+  images = [exquisito, pollo, palabras, otras, vacuna, una, modo, gratis, peru];
 
   images_1 = [
-    gratis,
-    peru,
     abismo,
     tristeza,
     aware,
     app,
-    descargar,
-    codigo,
     gratis,
-  ];
-
-  images_2 = [
     codigo,
     empresas,
     internet,
     desventajas,
+  ];
+
+  images_2 = [
     checklist,
     complete,
     programas,
-    tristeza,
-    codigo,
+    mejores,
+    imagenes,
+    personalidad,
+    cerebral,
+    clinic,
+    specialized,
   ];
-
+  images_3 = [
+    trabajo,
+    ambas,
+    probabilidad,
+    conceptos,
+    fertirriego,
+    transferencia,
+    calor,
+    icono,
+    iglesia,
+  ];
   for (let i = 0; i < images.length; i++) {
     y = y + rectHeight;
 
@@ -99,10 +115,10 @@ function setup() {
 
 function draw() {
   background(r, g, b);
-  //console.log(xPos, y);
+
   for (let i = 0; i < rectangles.length; i++) {
     rectangles[i].fractalize(
-      images[i],
+      images,
       xPos,
       rectangles[i].y,
       rectWidth,
@@ -111,41 +127,34 @@ function draw() {
 
     // rectangles[i].display(images[i]);
     // rectangles[i].move();
-    // rectangles[i].changeColor();
   }
   for (let i = 0; i < rectangles_1.length; i++) {
-    // rectangles_1[i].display(images_1[i]);
-
     rectangles_1[i].fractalize(
-      images_1[i],
+      images_1,
       xPos1,
       rectangles_1[i].y,
       rectWidth,
       rectHeight
     );
-
-    // rectangles_1[i].move();
   }
   for (let i = 0; i < rectangles_2.length; i++) {
-    // rectangles_2[i].display(images_2[i]);
     rectangles_2[i].fractalize(
-      images_2[i],
+      images_2,
       xPos2,
       rectangles_2[i].y,
       rectWidth,
       rectHeight
     );
+    //  rectangles_2[i].changeColor();
     //  rectangles_2[i].move();
   }
   for (let i = 0; i < rectangles_3.length; i++) {
-    // rectangles_2[i].display(images_2[i]);
     rectangles_3[i].fractalize(
-      images[i],
+      images_3,
       xPos3,
       rectangles_3[i].y,
       rectWidth,
       rectHeight
     );
-    //  rectangles_2[i].move();
   }
 }
