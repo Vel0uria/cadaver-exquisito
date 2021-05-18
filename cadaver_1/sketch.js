@@ -11,9 +11,9 @@ const rectangles_3 = [];
 let colorR = 0.0;
 let colorG = 0.0;
 let colorB = 0.0;
-let r = 70;
-let g = 70;
-let b = 70;
+let r = 80;
+let g = 80;
+let b = 50;
 
 function preload() {
   exquisito = loadImage("assets/exquisito.jpg");
@@ -55,7 +55,7 @@ function preload() {
 }
 
 function setup() {
-  createCanvas(1080, 1920);
+  createCanvas(1060, 1920);
 
   y = 0;
 
@@ -63,8 +63,7 @@ function setup() {
   xPos1 = xPos + rectWidth * 1.98;
   xPos2 = xPos1 + rectWidth * 1.98;
   xPos3 = xPos2 + rectWidth * 1.98;
-  dx = 390;
-  dy = random(150, 300);
+
   images = [exquisito, pollo, palabras, otras, vacuna, una, modo, gratis, peru];
 
   images_1 = [
@@ -77,24 +76,6 @@ function setup() {
     empresas,
     internet,
     desventajas,
-    checklist,
-    complete,
-    programas,
-    mejores,
-    imagenes,
-    personalidad,
-    cerebral,
-    clinic,
-    specialized,
-    trabajo,
-    ambas,
-    probabilidad,
-    conceptos,
-    fertirriego,
-    transferencia,
-    calor,
-    icono,
-    iglesia,
   ];
 
   images_2 = [
@@ -122,32 +103,33 @@ function setup() {
   for (let i = 0; i < images.length; i++) {
     y = y + rectHeight;
 
-    rectangles.push(new Rectangle(xPos, y));
+    rectangles.push(new Rectangle(xPos, y - rectHeight));
     rectangles_1.push(new Rectangle(xPos1, y - rectHeight));
     rectangles_2.push(new Rectangle(xPos2, y - rectHeight));
     rectangles_3.push(new Rectangle(xPos3, y - rectHeight));
   }
   imageMode(CENTER);
+  rectMode(CENTER);
+  frameRate(30);
+
+  // createLoop({ duration: 8, gif: true });
 }
 
 function draw() {
-  background(r, g, b, 50);
+  background(b);
 
   for (let i = 0; i < rectangles.length; i++) {
     rectangles[i].fractalize(
-      // images,
+      images,
       xPos,
       rectangles[i].y,
       rectWidth,
       rectHeight
     );
-
-    // rectangles[i].display(images[i]);
-    // rectangles[i].move();
   }
   for (let i = 0; i < rectangles_1.length; i++) {
     rectangles_1[i].fractalize(
-      //  images_1,
+      images_1,
       xPos1,
       rectangles_1[i].y,
       rectWidth,
@@ -156,18 +138,16 @@ function draw() {
   }
   for (let i = 0; i < rectangles_2.length; i++) {
     rectangles_2[i].fractalize(
-      //  images_2,
+      images_2,
       xPos2,
       rectangles_2[i].y,
       rectWidth,
       rectHeight
     );
-    rectangles_2[i].changeColor();
-    //  rectangles_2[i].move();
   }
   for (let i = 0; i < rectangles_3.length; i++) {
     rectangles_3[i].fractalize(
-      //  images_3,
+      images_3,
       xPos3,
       rectangles_3[i].y,
       rectWidth,
